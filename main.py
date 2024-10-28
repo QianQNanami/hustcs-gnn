@@ -109,7 +109,8 @@ def embed_task():
         tokens_dataset = data.tokenize(cpg_dataset)  # 对程序源码文本进行分词，返回分词的结果
         data.write(tokens_dataset, PATHS.tokens, f"{file_name}_{FILES.tokens}")
         # word2vec used to learn the initial embedding of each token
-        w2vmodel.build_vocab(sentences=tokens_dataset.tokens, update=not w2v_init)
+        # w2vmodel.build_vocab(sentences=tokens_dataset.tokens, update=not w2v_init)
+        w2vmodel.build_vocab(corpus_iterable=tokens_dataset.tokens, update=not w2v_init)
         w2vmodel.train(
             tokens_dataset.tokens, total_examples=w2vmodel.corpus_count, epochs=1
         )

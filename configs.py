@@ -100,7 +100,10 @@ class Embed(Config):
 
     @property
     def w2v_args(self):
-        return self.get_property("word2vec_args")
+        args = self.get_property("word2vec_args")
+        if 'size' in args:
+            args['vector_size'] = args.pop('size')
+        return args
 
     @property
     def edge_type(self):
