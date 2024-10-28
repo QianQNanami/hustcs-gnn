@@ -86,9 +86,9 @@ def train_val_test_split(data_frame: pd.DataFrame, shuffle=True):
     train_true, test_true = train_test_split(true, test_size=0.2, shuffle=shuffle)
     test_true, val_true = train_test_split(test_true, test_size=0.5, shuffle=shuffle)
 
-    train = train_false.append(train_true)
-    val = val_false.append(val_true)
-    test = test_false.append(test_true)
+    train = train_false._append(train_true)
+    val = val_false._append(val_true)
+    test = test_false._append(test_true)
 
     train = train.reset_index(drop=True)
     val = val.reset_index(drop=True)
@@ -111,7 +111,7 @@ def loads(data_sets_dir, ratio=1):
     data_sets_files.remove(data_sets_files[0])
 
     for ds_file in data_sets_files:
-        dataset = dataset.append(load(data_sets_dir, ds_file))
+        dataset = dataset._append(load(data_sets_dir, ds_file))
 
     return dataset
 
